@@ -1,0 +1,32 @@
+{% extends "CarnetCarBundle::layout.html.twig" %}
+
+{% block title %}
+	Affichage du véhicule - {{ parent() }}
+{% endblock %}
+
+{% block car_body %}
+
+	<h2>{{ car.mark }} - {{ car.model }}</h2>
+
+	{% if car.note is not null %}
+		<div class="well">
+			{{ car.note }}
+		</div>
+	{% endif %}
+
+	<p>
+		<a href="{{ path('carnet_car_home') }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-left"></i>
+			Retour à la liste
+		</a>
+		<a href="{{ path('carnet_car_update', {'id': car.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-edit"></i>
+			Modifier le véhicule
+		</a>
+		<a href="{{ path('carnet_car_delete', {'id': car.id}) }}" class="btn btn-danger">
+			<i class="glyphicon glyphicon-trash"></i>
+			Supprimer le véhicule
+		</a>
+	</p>
+
+{% endblock %}

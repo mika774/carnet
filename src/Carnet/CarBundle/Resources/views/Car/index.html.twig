@@ -1,0 +1,22 @@
+{% extends "CarnetCarBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block car_body %}
+
+	<h2>Liste des véhicules</h2>
+
+	<ul>
+		{% for car in listCars %}
+			<li>
+				<a href="{{ path('carnet_car_view', {'id': car.id}) }}">
+					{{ car.mark }} - {{ car.model }}
+				</a>
+			</li>
+		{% else %}
+			<li>Pas encore de véhicules</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
