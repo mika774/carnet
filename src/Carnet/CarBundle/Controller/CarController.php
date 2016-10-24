@@ -12,7 +12,7 @@ class CarController extends Controller
     public function indexAction($page)
     {
     	if ($page < 1) {
-    		throw new NotFoundHttpException("La page ".$id." n'existe pas.");
+    		throw new NotFoundHttpException("La page ".$page." n'existe pas.");
     	}
 
     	$em = $this->getDoctrine()->getManager();
@@ -29,7 +29,7 @@ class CarController extends Controller
     {
     	$em = $this->getDoctrine()->getManager();
 
-    	$car = $em->getRepository('CarnetCarBundle')->find($id);
+    	$car = $em->getRepository('CarnetCarBundle:Car')->find($id);
 
     	if (null === $car) {
     		throw new NotFoundHttpException("La voiture d'id ".$id." n'existe pas");
