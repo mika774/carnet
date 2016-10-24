@@ -1,3 +1,33 @@
-carnet_car_homepage:
-    path:     /
-    defaults: { _controller: CarnetCarBundle:Default:index }
+carnet_car_home:
+    path:     /{page}
+    defaults:  
+        _controller: CarnetCarBundle:Car:index 
+        page:        1
+    requirements:
+        page: \d*
+
+carnet_car_view:
+    path:     /{id}
+    defaults: 
+        _controller: CarnetCarBundle:Car:view
+    requirements:
+        id: \d+
+
+carnet_car_add:
+    path:     /add
+    defaults:
+        _controller: CarnetCarBundle:Car:add
+
+carnet_car_update:
+    path:     /update/{id}
+    defaults:
+        _controller: CarnetCarBundle:Car:update
+    requirements:
+        id: \d+
+
+carnet_car_delete:
+    path:     /delete/{id}
+    defaults: 
+        _controller: CarnetCarBundle:Car:delete
+    requirements:
+        id: \d+
