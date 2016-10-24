@@ -7,7 +7,7 @@ carnet_car_home:
         page: \d*
 
 carnet_car_view:
-    path:     /{id}
+    path:     /car/{id}
     defaults: 
         _controller: CarnetCarBundle:Car:view
     requirements:
