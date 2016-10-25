@@ -3,6 +3,10 @@
 namespace Carnet\CarBundle\Controller;
 
 use Carnet\CarBundle\Entity\Car;
+
+use Carnet\CarBundle\Form\CarType;
+use Carnet\CarBundle\Form\CarUpdateType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -42,15 +46,22 @@ class CarController extends Controller
 
     public function addAction(Request $request)
     {
-    	$em = $this->getDoctrine()->getManager();
+        $car = new Car();
+        $form = $this->createForm(CarType::class, $car);
 
-    	if ($request->isMethod('POST')) {
+    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($car);
+            $em->flush();
+
     		$request->getSession()->getFlashBag()->add('notice', 'Voiture bien enregistrée');
 
     		return $this->redirectToRoute('carnet_car_view', array('id' => $car->getId()));
     	}
 
-    	return $this->render('CarnetCarBundle:Car:add.html.twig');
+    	return $this->render('CarnetCarBundle:Car:add.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     public function updateAction($id, Request $request)
@@ -63,16 +74,22 @@ class CarController extends Controller
     		throw new NotFoundHttpException("La voiture d'id ".$id." n'existe pas.");
     	}
 
-    	if ($request->isMethod('POST')) {
+        $form = $this->createForm(CarUpdateType::class, $car);
+
+    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em->flush();
     		$request->getSession()->getFlashBag()->add('notice', 'Voiture bien modifiée');
 
     		return $this->redirectToRoute('carnet_car_view', array('id' => $car->getId()));
     	}
 
-    	return $this->render('CarnetCarBundle:Car:update.html.twig');
+    	return $this->render('CarnetCarBundle:Car:update.html.twig', array(
+            'car'   => $car,
+            'form'  => $form->createView()
+        ));
     }
 
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
     	$em = $this->getDoctrine()->getManager();
 
@@ -82,6 +99,20 @@ class CarController extends Controller
     		throw new NotFoundHttpException("La voiture d'id ".$id." n'existe pas.");
     	}
 
-    	return $this->render('CarnetCarBundle:Car:delete.html.twig');
+        $form = $this->get('form.factory')->create();
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em->remove($car);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Véhicule bien supprimée');
+
+            return $this->redirectToRoute('carnet_car_home');
+        }
+
+    	return $this->render('CarnetCarBundle:Car:delete.html.twig', array(
+            'car'   => $car,
+            'form'  => $form->createView()
+        ));
     }
 }
