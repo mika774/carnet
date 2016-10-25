@@ -1,0 +1,25 @@
+{% extends "CarnetCarBundle::layout.html.twig" %}
+
+{% block title %}
+	Supprimer un véhicule - {{ parent() }}
+{% endblock %}
+
+{% block car_body %}
+	
+	<h2>Supprimer un véhicule</h2>
+
+	<p>Êtes vous certains de vouloir supprimer le véhicule {{ car.mark }} - {{ car.model }} ?</p>
+
+	<form action="{{ path('carnet_car_delete', {'id': car.id}) }}" method="POST">
+		<a href="{{ path('carnet_car_view', {'id': car.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-left"></i>
+			Retour au véhicule
+		</a>
+
+		<input type="submit" value="Supprimer" class="btn btn-danger">
+
+		{{ form_rest(form) }}
+
+	</form>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "CarnetCarBundle::layout.html.twig" %}
+
+{% block title %}
+	Modifier un véhicule - {{ parent() }}
+{% endblock %}
+
+{% block car_body %}
+	
+	<h2>Modifier un véhicule</h2>
+
+	{{ include("CarnetCarBundle:Car:form.html.twig") }}
+
+	<p>
+		<a href="{{ path('carnet_car_view', {'id': car.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-left"></i>
+			Retour au véhicule
+		</a>
+
+	</p>
+
+{% endblock %}
