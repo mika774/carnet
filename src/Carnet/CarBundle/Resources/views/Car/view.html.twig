@@ -23,6 +23,10 @@
 			<i class="glyphicon glyphicon-edit"></i>
 			Modifier le véhicule
 		</a>
+		<a href="{{ path('carnet_vidange_add', {'id_car': car.id}) }}" class="btn btn-success">
+			<i class="glyphicon glyphicon-wrench"></i>
+			Ajouter une vidange
+		</a>
 		<a href="{{ path('carnet_car_delete', {'id': car.id}) }}" class="btn btn-danger">
 			<i class="glyphicon glyphicon-trash"></i>
 			Supprimer le véhicule
