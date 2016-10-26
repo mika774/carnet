@@ -43,7 +43,7 @@ class Car
     private $note;
 
     /**
-     * @ORM\OneToMany(targetEntity="Carnet\CarBundle\Entity\Vidange", mappedBy="car")
+     * @ORM\OneToMany(targetEntity="Carnet\CarBundle\Entity\Vidange", mappedBy="car", cascade={"persist", "remove"})
      */
     private $vidanges;
 
