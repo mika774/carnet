@@ -4,7 +4,6 @@ namespace Carnet\CarBundle\Controller;
 
 use Carnet\CarBundle\Entity\Car;
 use Carnet\CarBundle\Entity\Vidange;
-use Carnet\CarBundle\Repository\VidangeRepository;
 
 use Carnet\CarBundle\Form\CarType;
 use Carnet\CarBundle\Form\CarUpdateType;
@@ -37,11 +36,11 @@ class CarController extends Controller
 
     	$car = $em->getRepository('CarnetCarBundle:Car')->find($id);
 
-        $vidanges = $em->getRepository('CarnetCarBundle:Vidange')->getVidangesByCar($id);
-
     	if (null === $car) {
     		throw new NotFoundHttpException("La voiture d'id ".$id." n'existe pas");
     	}
+        
+        $vidanges = $car->getVidanges();
 
     	return $this->render('CarnetCarBundle:Car:view.html.twig', array(
     		'car' => $car,

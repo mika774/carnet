@@ -42,6 +42,11 @@ class Car
      */
     private $note;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Carnet\CarBundle\Entity\Vidange", mappedBy="car")
+     */
+    private $vidanges;
+
 
     /**
      * Get id
@@ -124,5 +129,45 @@ class Car
     {
         return $this->note;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->vidanges = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add vidange
+     *
+     * @param \Carnet\CarBundle\Entity\Vidange $vidange
+     *
+     * @return Car
+     */
+    public function addVidange(\Carnet\CarBundle\Entity\Vidange $vidange)
+    {
+        $this->vidanges[] = $vidange;
+
+        return $this;
+    }
+
+    /**
+     * Remove vidange
+     *
+     * @param \Carnet\CarBundle\Entity\Vidange $vidange
+     */
+    public function removeVidange(\Carnet\CarBundle\Entity\Vidange $vidange)
+    {
+        $this->vidanges->removeElement($vidange);
+    }
+
+    /**
+     * Get vidanges
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVidanges()
+    {
+        return $this->vidanges;
+    }
+}
