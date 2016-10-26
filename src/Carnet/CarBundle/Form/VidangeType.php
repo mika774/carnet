@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class VidangeType extends AbstractType
@@ -19,6 +20,7 @@ class VidangeType extends AbstractType
     {
         $builder
             ->add('date', DateType::class)
+            ->add('nbKm', IntegerType::class)
             ->add('save', SubmitType::class)
         ;
     }

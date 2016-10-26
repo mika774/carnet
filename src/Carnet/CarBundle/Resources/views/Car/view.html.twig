@@ -15,7 +15,7 @@
 	{% endif %}
 
 	{% for vidange in vidanges %}
-		{{ vidange.date|date('d/m/Y') }}<br />
+		Fait le {{ vidange.date|date('d/m/Y') }} à {{ vidange.nbKm }}km<br />
 	{% endfor %}
 
 	<p>

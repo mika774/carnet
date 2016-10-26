@@ -29,6 +29,13 @@ class Vidange
     private $date;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="nbKm", type="integer")
+     */
+    private $nbKm;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Carnet\CarBundle\Entity\Car", inversedBy="vidanges")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -73,6 +80,30 @@ class Vidange
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set nbKm
+     *
+     * @param integer $nbKm
+     *
+     * @return Vidange
+     */
+    public function setNbKm($nbKm)
+    {
+        $this->nbKm = $nbKm;
+
+        return $this;
+    }
+
+    /**
+     * Get nbKm
+     *
+     * @return integer
+     */
+    public function getNbKm()
+    {
+        return $this->nbKm;
     }
 
     /**
