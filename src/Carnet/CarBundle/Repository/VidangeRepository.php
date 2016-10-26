@@ -10,4 +10,14 @@ namespace Carnet\CarBundle\Repository;
  */
 class VidangeRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getVidangesByCar($id_car)
+	{
+		$query = $this->createQueryBuilder('v')
+			->leftJoin('v.car', 'c')
+			->addSelect('c')
+			->getQuery()
+		;
+
+		return $query->getResult();
+	}
 }
