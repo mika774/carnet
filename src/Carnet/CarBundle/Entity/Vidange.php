@@ -29,7 +29,7 @@ class Vidange
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Carnet\CarBundle\Entity\Car")
+     * @ORM\ManyToOne(targetEntity="Carnet\CarBundle\Entity\Car", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $car;
