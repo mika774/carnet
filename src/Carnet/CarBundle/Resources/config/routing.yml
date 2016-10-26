@@ -31,3 +31,10 @@ carnet_car_delete:
         _controller: CarnetCarBundle:Car:delete
     requirements:
         id: \d+
+
+carnet_vidange_add:
+    path:     /car/{id_car}/vidange/add
+    defaults:
+        _controller: CarnetCarBundle:Vidange:add
+    requirements:
+        id_car: \d+
