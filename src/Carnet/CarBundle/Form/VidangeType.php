@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 class VidangeType extends AbstractType
 {
     /**
@@ -21,6 +23,12 @@ class VidangeType extends AbstractType
         $builder
             ->add('date', DateType::class)
             ->add('nbKm', IntegerType::class)
+            ->add('reparations', EntityType::class, array(
+                'class' => 'CarnetCarBundle:Reparation',
+                'choice_label' => 'name',
+                'expanded' => true,
+                'multiple' => true
+            ))
             ->add('save', SubmitType::class)
         ;
     }
