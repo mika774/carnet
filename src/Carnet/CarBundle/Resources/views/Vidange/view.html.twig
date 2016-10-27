@@ -1,0 +1,23 @@
+{% extends "CarnetCarBundle::layout.html.twig" %}
+
+{% block title %}
+	Affichage d'une vidange - {{ parent() }}
+{% endblock %}
+
+{% block car_body %}
+	
+	<h2>Vidange du {{ vidange.date|date('d/m/Y') }}</h2>
+	<p>
+		Fait à {{ vidange.nbKm }}km
+	</p>
+	<h3>Liste des réparations</h3>
+	<div class="well">
+		{% for reparation in reparations %}
+			{{ reparation.name }} <br />
+		{% endfor %}
+	</div>
+	<a href="{{ path('carnet_car_view', {'id': vidange.car.id}) }}">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour au véhicule
+	</a>
+{% endblock %}
