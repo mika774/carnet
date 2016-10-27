@@ -15,7 +15,13 @@
 	{% endif %}
 
 	{% for vidange in vidanges %}
-		Fait le {{ vidange.date|date('d/m/Y') }} à {{ vidange.nbKm }}km<br />
+		<ul class="nav nav-pills nav-stacked">
+			<li>
+				<a href="{{ path('carnet_vidange_view', {'id': vidange.id}) }}">
+					Fait le {{ vidange.date|date('d/m/Y') }} à {{ vidange.nbKm }}km
+				</a>	
+			</li>
+		</ul>
 	{% endfor %}
 
 	<p>
