@@ -41,6 +41,11 @@ class Vidange
      */
     private $car;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Carnet\CarBundle\Entity\Reparation", cascade={"persist", "remove"})
+     */
+    private $reparations;
+
 
     public function __construct()
     {
@@ -128,5 +133,39 @@ class Vidange
     public function getCar()
     {
         return $this->car;
+    }
+
+    /**
+     * Add reparation
+     *
+     * @param \Carnet\CarBundle\Entity\Reparation $reparation
+     *
+     * @return Vidange
+     */
+    public function addReparation(\Carnet\CarBundle\Entity\Reparation $reparation)
+    {
+        $this->reparations[] = $reparation;
+
+        return $this;
+    }
+
+    /**
+     * Remove reparation
+     *
+     * @param \Carnet\CarBundle\Entity\Reparation $reparation
+     */
+    public function removeReparation(\Carnet\CarBundle\Entity\Reparation $reparation)
+    {
+        $this->reparations->removeElement($reparation);
+    }
+
+    /**
+     * Get reparations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReparations()
+    {
+        return $this->reparations;
     }
 }
