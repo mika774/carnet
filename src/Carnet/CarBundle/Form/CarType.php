@@ -20,7 +20,7 @@ class CarType extends AbstractType
         $builder
             ->add('mark',   TextType::class)
             ->add('model',  TextType::class)
-            ->add('note',   TextareaType::class)
+            ->add('note',   TextareaType::class, array('required' => false))
             ->add('save',   SubmitType::class)
         ;
     }
