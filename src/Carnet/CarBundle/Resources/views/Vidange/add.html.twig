@@ -19,3 +19,15 @@
 	</p>
 
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+		$(document).ready(function() {
+			$('.js-datepicker').datepicker({
+				dateFormat: 'dd/mm/yy',
+				format: 'yyyy-mm-dd'
+			});
+		});
+	</script>
+{% endblock %}

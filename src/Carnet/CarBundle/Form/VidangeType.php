@@ -21,7 +21,11 @@ class VidangeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateType::class)
+            ->add('date', DateType::class, array(
+                'widget' => 'single_text',
+                'attr' => ['class' => 'js-datepicker'],
+                'format' => 'dd/MM/yyyy'
+            ))
             ->add('nbKm', IntegerType::class)
             ->add('reparations', EntityType::class, array(
                 'class' => 'CarnetCarBundle:Reparation',
