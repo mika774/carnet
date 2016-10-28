@@ -5,6 +5,9 @@
         <title>{% block title %}Carnet d'entretien{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.structure.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.theme.min.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -34,6 +37,7 @@
         {% block javascripts %}
             <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>
