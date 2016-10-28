@@ -6,7 +6,6 @@ use Carnet\CarBundle\Entity\Car;
 use Carnet\CarBundle\Entity\Vidange;
 
 use Carnet\CarBundle\Form\CarType;
-use Carnet\CarBundle\Form\CarUpdateType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -78,7 +77,7 @@ class CarController extends Controller
     		throw new NotFoundHttpException("La voiture d'id ".$id." n'existe pas.");
     	}
 
-        $form = $this->createForm(CarUpdateType::class, $car);
+        $form = $this->createForm(CarType::class, $car);
 
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em->flush();
