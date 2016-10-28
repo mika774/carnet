@@ -42,7 +42,7 @@ class Vidange
     private $car;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Carnet\CarBundle\Entity\Reparation", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="Carnet\CarBundle\Entity\Reparation", cascade={"persist"})
      */
     private $reparations;
 
