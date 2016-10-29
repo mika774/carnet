@@ -1,0 +1,21 @@
+{% extends "CarnetCarBundle::layout.html.twig" %}
+
+{% block title %}
+	Supprimer une vidange - {{ parent() }}
+{% endblock %}
+
+{% block car_body %}
+	
+	<h2>Supprimer une vidange</h2>
+
+	<p>Êtes vous certains de vouloir supprimer la vidange du {{ vidange.date|date('d/m/Y') }} ?</p>
+
+	<form action="{{ path('carnet_vidange_delete', {'id': vidange.id}) }}" method="POST">
+
+		<input type="submit" value="Supprimer" class="btn btn-danger">
+
+		{{ form_rest(form) }}
+
+	</form>
+
+{% endblock %}

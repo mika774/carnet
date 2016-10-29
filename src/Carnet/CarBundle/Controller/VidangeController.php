@@ -31,6 +31,7 @@ class VidangeController extends Controller
             'reparations' => $reparations
     	));
 	}
+
 	public function addAction($id_car, Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -51,6 +52,34 @@ class VidangeController extends Controller
 		}
 
 		return $this->render('CarnetCarBundle:Vidange:add.html.twig', array(
+			'form' => $form->createView()
+		));
+	}
+
+	public function deleteAction(Request $request, $id)
+	{
+		$em = $this->getDoctrine()->getManager();
+
+		$vidange = $em->getRepository('CarnetCarBundle:Vidange')->find($id);
+		$car = $vidange->getCar();
+
+		if (null === $vidange) {
+			throw new NotFoundHttpException("La vidange d'id ".$id." n'existe pas");
+		}
+
+		$form = $this->get('form.factory')->create();
+
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+			$em->remove($vidange);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('notice', 'Vidange bien supprimée');
+
+			return $this->redirectToRoute('carnet_car_view', array('id' => $car->getId()));
+		}
+
+		return $this->render('CarnetCarBundle:Vidange:delete.html.twig', array(
+			'vidange' => $vidange,
 			'form' => $form->createView()
 		));
 	}

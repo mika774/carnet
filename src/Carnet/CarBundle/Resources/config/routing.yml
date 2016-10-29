@@ -45,3 +45,10 @@ carnet_vidange_add:
         _controller: CarnetCarBundle:Vidange:add
     requirements:
         id_car: \d+
+
+carnet_vidange_delete:
+    path:     /delete/vidange/{id}
+    defaults: 
+        _controller: CarnetCarBundle:Vidange:delete
+    requirements:
+        id: \d+

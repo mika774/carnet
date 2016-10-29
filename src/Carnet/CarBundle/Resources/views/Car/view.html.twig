@@ -15,11 +15,14 @@
 	{% endif %}
 
 	{% for vidange in vidanges %}
-		<ul class="nav nav-pills nav-stacked">
+		<ul class="nav-pills nav-stacked">
 			<li>
 				<a href="{{ path('carnet_vidange_view', {'id': vidange.id}) }}">
 					Fait le {{ vidange.date|date('d/m/Y') }} à {{ vidange.nbKm }}km
-				</a>	
+				</a>
+				<a href="{{ path('carnet_vidange_delete', {'id': vidange.id}) }}">
+					<img src="{{ asset('images/supprimer.png') }}">
+				</a>
 			</li>
 		</ul>
 	{% endfor %}
